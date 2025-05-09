@@ -13,41 +13,51 @@ WEBCEATA es un sitio web estático para **CEATA Ingeniería**, una empresa dedic
 
 ## Estructura de Carpetas
 ```
-WebCeata/
-├── css/
-│   └── style.css           # Estilos principales del sitio
-├── js/
-│   └── script.js          # Lógica para carrusel, carga de componentes y navbar
+WEBCEATA/
 ├── assets/
-│   ├── images/            # Imágenes y videos
-│   │   ├── logo.png
-│   │   ├── CiudadDos.webp
-│   │   ├── PuebloDos.webp
-│   │   ├── Industrial.webp
-│   │   ├── Rural3.webp
-│   │   ├── PrimerCarrusel.mp4
-│   │   ├── SegundoCarrusel.mp4
-│   │   ├── TercerCarrousel.mp4
-│   │   ├── CuartoCarrusel.mp4
-│   └── footer/            # Imágenes específicas del footer
-│       ├── ods3.png
-│       ├── ods6.png
-│       ├── ods9.png
-│       ├── ods12.png
-│       ├── Arbitraje.png
-│       ├── certificado1.png
-│       ├── certificado2.png
-│       ├── certificado3.png
+│   ├── footer/
+│   │   ├── Arbitraje.png              # Imagen de arbitraje en el footer
+│   │   ├── certificado1.png           # Certificado del footer
+│   │   ├── certificado2.png           # Certificado del footer
+│   │   ├── ods3.png                   # Icono ODS 3 - Salud y Bienestar
+│   │   ├── ods6.png                   # Icono ODS 6 - Agua limpia
+│   │   ├── ods9.png                   # Icono ODS 9 - Industria e innovación
+│   │   ├── ods12.png                  # Icono ODS 12 - Producción responsable
+│   │
+│   └── images/
+│       ├── CiudadDos.webP
+│       ├── CuartoCARRUSEL.mp4         # Video para un carrusel
+│       ├── INDUSTRIAL.webP
+│       ├── logo.png                   # Logo usado en el navbar y footer
+│       ├── PrimerCARRUSEL.mp4         # Video para un carrusel
+│       ├── PuebloDos.webP
+│       ├── Rural3.webP
+│       ├── SegundoCARRUSEL.mp4        # Video para un carrusel
+│       ├── TercerCARRUSEL.mp4         # Video para un carrusel
+│       ├── water.png                  # DropFill
+│       └── waterfall.png              # DropFiller
+│
 ├── components/
-│   ├── contact-buttons.html  # Botones flotantes de contacto
-│   ├── footer-component.html # Footer del sitio
-├── docs/
-│   ├── catalogo-es.pdf    # Catálogo en español
-│   ├── catalogo-en.pdf    # Catálogo en inglés
-├── index.html             # Página principal
-├── README.md              # Documentación del proyecto
-├── LICENSE                # Licencia MIT
-└── .gitignore             # Archivos ignorados por Git
+│   ├── contact-buttons.html           # Botones de contacto (quizás usados en el footer)
+│   └── footer-component.html          # Componente del footer que trabajamos
+│
+├── css/
+│   └── style.css                       # Estilos generales del sitio (navbar, footer, etc.)
+│
+├── docs/                              # Movido al nivel raíz
+│   ├── catalogo-en.pdf
+│   └── catalogo-es.pdf
+│
+├── js/
+│   └── scripts.js                     # JS para el menú hamburguesa y dropdown
+│
+├── pages/
+│   ├── configurador.html              # Página del configurador
+│   └── Header2.html                   # Variante del header (quizás con navbar)
+│
+├── index.html                         # Página principal
+├── LICENSE.txt                        # Licencia del proyecto
+└── README.md                          # Documentación del proyecto
 ```
 
 ## Requisitos
