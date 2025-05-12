@@ -49,7 +49,7 @@ WEBCEATA/
 │   └── catalogo-es.pdf
 │
 ├── js/
-│   └── scripts.js                     # JS para el menú hamburguesa y dropdown
+│   └── script.js                     # JS para el menú hamburguesa y dropdown
 │
 ├── pages/
 │   ├── configurador.html              # Página del configurador
