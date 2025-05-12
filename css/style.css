@@ -2,8 +2,8 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom, #005f73, #0a9396);
-    color: white;
+    background: white;
+    color: rgb(238, 197, 197);
     margin: 0;
     padding: 0;
     height: 100%;
@@ -107,7 +107,7 @@ body {
   background-color: #fff;
   top: 145px;
   left: 0;
-  width: 100vw;
+  width: 100vw;/* Mantenemos el ancho completo */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 9;
 }
@@ -118,6 +118,9 @@ body {
     display: flex;
     justify-content: space-around;
     gap: 30px;
+    align-items: center; /* centra horizontalmente */
+    padding: 20px 40px; /* Aumentamos el padding para un diseño más ancho y estético */
+    
 }
 
 .dropdown:hover .dropdown-content {
@@ -127,6 +130,7 @@ body {
 }
 
 .dropdown-item {
+    width: 160px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -159,6 +163,24 @@ body {
     text-decoration: none;
 }
 
+
+/* Estilos para el CTA */
+.cta-configurator {
+  display: inline-block;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 10px auto;
+}
+
+
+.cta-configurator:hover {
+  background:linear-gradient(to right, #00ABFE, #F1AF1B);
+  transform: translateY(-2px); /* Efecto de elevación */
+}
 
 /* Responsive Navbar */
 
@@ -285,9 +307,7 @@ body {
   justify-content: center;
   padding: 0.75rem 1rem;
   font-size: 1rem;
-  border-bottom: 1px solid #ccc;
   color: #000;
-  background-color: #fff;
   border-radius: 4px;
   text-decoration: none;
   width: 100%;
@@ -305,10 +325,18 @@ body {
   .dropdown-item a {
     flex-grow: 1;
     text-align: center; /* Cambiamos a center para que coincida con el diseño vertical */
-    width: 100%;
+    white-space: normal; /* Permite saltos de línea */
+    word-break: break-word;
+    max-width: 100%;
     padding: 0.5rem;
   }
+
+  .dropdown-content::before {
+    display: none;
+  }
+
 }
+
 
 /* Botones Flotantes de Contacto */
 .floating-buttons {
@@ -498,6 +526,26 @@ video {
   background-image: linear-gradient(to right, #00ABFE, #F1AF1B);
   border-radius: 5px;
 }
+/*Boton del tercer slide*/
+.boton-estilo {
+  background: rgba(255, 255, 255, 0.5);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  transition: background-image 0.5s ease, color 0.3s ease, transform 0.3s ease;
+  text-decoration: none; /* para quitar el subrayado */
+  display: inline-block; /* para aplicar padding y tamaño como botón */
+}
+
+.boton-estilo:hover {
+  color: #fff;
+  background-image: linear-gradient(to right, #00ABFE, #F1AF1B);
+  border-radius: 5px;
+}
+
 
 .arrow {
   position: absolute;
@@ -1307,5 +1355,386 @@ video {
       overflow-wrap: break-word; /* Permite dividir el correo en líneas */
       display: inline-block; /* Asegura que el ajuste funcione */
       max-width: 100%; /* Limita al ancho del contenedor */
+  }
+}
+
+/*PAGINA DE INICIO Configurador de AGUA TRATADA*/
+/* Estilo especial para el navbar en configurador.html */
+body#configurator-page #navbar {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
+
+body#configurator-page #navbar .logo-container img {
+  height: 80px;
+}
+
+body#configurator-page #navbar .nav-links a {
+  color: #000;
+  font-weight: 500;
+}
+
+body#configurator-page #navbar .hamburger div {
+  background-color: #000;
+}
+
+body#configurator-page #navbar .dropdown-content {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+body#configurator-page #navbar .dropdown-content a {
+  color: #000;
+}
+
+/* Imagen de fondo con título */
+.header-image {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: url('https://picsum.photos/1200/600') no-repeat center center;
+  background-size: cover;
+}
+
+.header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-title {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Introducción con card al lado */
+.intro-section {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #e0f7fa, #f5faff);
+}
+
+.intro-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  text-align: center;
+}
+
+.intro-content {
+  flex: 2;
+}
+
+.intro-content h2 {
+  color: #01579b;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.intro-content p {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.intro-card {
+  flex: 1;
+  max-width: 300px;
+}
+
+.intro-card .card {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.intro-card .card-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.intro-card .card-title {
+  color: #333;
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.intro-card .card-text {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.intro-card .btn-primary {
+  background: linear-gradient(to right, #1976d2, #1565c0);
+  color: #fff;
+  border: 2px solid #1976d2;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+}
+
+.intro-card .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(25, 118, 210, 0.5);
+  background: linear-gradient(to right, #1565c0, #1976d2);
+}
+
+.intro-card .btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.intro-card .btn-primary:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.intro-card .btn-secondary {
+  background: linear-gradient(to right, #ffca28, #ffb300);
+  color: #fff;
+  border: 2px solid #ffca28;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 202, 40, 0.3);
+}
+
+.intro-card .btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 202, 40, 0.5);
+  background: linear-gradient(to right, #ffb300, #ffca28);
+}
+
+.intro-card .btn-secondary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.intro-card .btn-secondary:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Botón Configurador simple y llamativo */
+.configurator-btn {
+  display: inline-block;
+  background-color: #00bcd4;
+  color: #fff;
+  padding: 12px 25px;
+  border: 2px solid #00bcd4;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 188, 212, 0.3);
+  margin-top: 20px;
+}
+
+.configurator-btn:hover {
+  background-color: #0097a7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 151, 167, 0.5);
+  color: #fff;
+}
+
+/* Beneficios */
+.benefits-section {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #e0f7fa, #f5faff);
+}
+
+.benefits-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.benefits-container h2 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.benefit-item {
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.benefit-item:hover {
+  transform: translateY(-5px);
+}
+
+.benefit-item i {
+  font-size: 2.5rem;
+  color: #00bcd4;
+  margin-bottom: 15px;
+}
+
+.benefit-item h3 {
+  color: #333;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.benefit-item p {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Video */
+.video-section {
+  padding: 40px 20px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.video-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.video-container h2 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.video-container iframe {
+  width: 100%;
+  max-width: 560px;
+  height: 315px;
+  border: none;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .header-image {
+    height: 300px;
+  }
+
+  .header-title {
+    font-size: 2rem;
+  }
+
+  .intro-content h2 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .intro-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .intro-card {
+    max-width: 100%;
+  }
+
+  .intro-card .card-title {
+    font-size: 1.1rem;
+  }
+
+  .intro-card .card-text {
+    font-size: 0.85rem;
+  }
+
+  .benefits-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .benefit-item {
+    padding: 15px;
+  }
+
+  .benefit-item i {
+    font-size: 2rem;
+  }
+
+  .benefit-item h3 {
+    font-size: 1.2rem;
+  }
+
+  .video-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .video-container iframe {
+    height: 200px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .header-image {
+    height: 350px;
+  }
+
+  .intro-content h2 {
+    font-size: 1.4rem;
+  }
+
+  .intro-container {
+    gap: 20px;
+  }
+
+  .intro-card {
+    max-width: 250px;
   }
 }
