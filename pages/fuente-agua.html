@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Configurador de soluciones de CEATA Ingeniería para el tratamiento de agua potable.">
-  <title>Configurador de Agua Potable - CEATA Ingeniería</title>
+  <meta name="description" content="Selección de fuente de agua para soluciones de CEATA Ingeniería.">
+  <title>Selección de Fuente de Agua - CEATA Ingeniería</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body id="configurator-page">
   <!-- Navbar centrado -->
   <div id="navbar">
     <div class="logo-container">
@@ -24,7 +24,7 @@
     <nav class="navbar" style="justify-content: center; flex-direction: column;">
       <ul class="nav-links" style="margin-top: 10px;">
         <li><a href="/index.html">CEATA</a></li>
-               <li class="dropdown">
+        <li class="dropdown">
           <a href="#">Gestión del agua</a>
           <div class="dropdown-content">
             <div class="dropdown-item">
@@ -72,11 +72,11 @@
           </div>
         </li>
         <li><a href="#">I+D+I</a></li>
-       <li class="dropdown">
+        <li class="dropdown">
           <a href="#">Soluciones</a>
           <div class="dropdown-content">
             <div class="dropdown-inner">
-              <a href="/pages/configurador.html" class="cta-configurator"> Configura tu solucion</a>
+              <a href="/pages/configurador.html" class="cta-configurator"> Configura tu solución</a>
               <div class="dropdown-item">
                 <div class="image-wrapper">
                   <img src="https://picsum.photos/120/80?random=28" alt="Agua potable">
@@ -98,71 +98,81 @@
       </ul>
     </nav>
   </div>
-
-  <!-- Imagen de fondo con título y mensaje destacado -->
-  <section class="header-image">
-    <div class="header-overlay">
-      <h1 class="header-title">Soluciones para el tratamiento de agua potable</h1>
+  
+  <!-- Sección de barra de progreso -->
+  <div class="progress-bar">
+    <div class="step" data-step="1">
+      <span class="step-circle">1</span>
+      <span class="step-label">Tratamiento</span>
     </div>
-  </section>
+    <div class="step-connector"></div>
+    <div class="step" data-step="2">
+      <span class="step-circle">2</span>
+      <span class="step-label">Fuente</span>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step" data-step="3">
+      <span class="step-circle">3</span>
+      <span class="step-label">Capacidad</span>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step" data-step="4">
+      <span class="step-circle">4</span>
+      <span class="step-label">Caracterización</span>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step" data-step="5">
+      <span class="step-circle">5</span>
+      <span class="step-label">Adicionales</span>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step" data-step="6">
+      <span class="step-circle">6</span>
+      <span class="step-label">Resumen</span>
+    </div>
+  </div>
 
-  <!-- Introducción al tratamiento de agua potable con card -->
-  <section class="intro-section">
-    <div class="intro-container">
-      <div class="intro-content">
-          <h2>Desde agua potable municipal hasta agua ultrapura para uso industrial, CEATA ofrece soluciones rentables y sostenibles en cualquier parte del mundo.</h2>
-        <p>En CEATA Ingeniería, ofrecemos soluciones innovadoras para el tratamiento de agua potable, garantizando agua segura y de alta calidad para comunidades e industrias. Nuestro sistema utiliza procesos avanzados de filtración y desinfección para eliminar bacterias, sedimentos y contaminantes, cumpliendo con los estándares más exigentes de potabilidad.</p>
-        <p>Estas soluciones son ideales para garantizar el acceso al agua potable en áreas urbanas, rurales o industriales, con un enfoque en la eficiencia y la sostenibilidad. Contamos con soporte técnico continuo para asegurar un rendimiento óptimo.</p>
-        <a href="/pages/configurador.html" class="configurator-btn">Configura tu Solución de Agua Potable</a>
-      </div>
-      <div class="intro-card">
-        <div class="card">
-          <div class="card-body text-center">
-            <i class="fas fa-tint" style="font-size: 2rem; color: #00695c;"></i>
-            <h5 class="card-title">¿Desafíos de tratamiento de aguas?</h5>
-            <p class="card-text">Contáctenos para conocer más sobre nuestras soluciones de tratamiento de aguas o discutir detalles específicos de su proyecto.</p>
-            <a href="https://wa.me/1234567890?text=Hola,%20quiero%20saber%20más%20sobre%20sus%20soluciones%20de%20tratamiento%20de%20agua." class="btn btn-primary" target="_blank">Contactar</a>
-            <a href="/docs/catalogo-es.pdf" class="btn btn-secondary" download>Descargar Folleto</a>
+  <!-- Sección de selección de fuente de agua -->
+  <section class="configurator-options">
+    <div class="options-container">
+      <h1>Selecciona la Fuente de Agua</h1>
+      <p>Elige la fuente de agua para tu solución:</p>
+      <form id="source-form">
+        <div class="options-grid">
+          <div class="option-item">
+            <input type="radio" id="agua-subterranea" name="source" value="Agua Subterránea" required>
+            <label for="agua-subterranea">
+              <div class="option-image" style="background-image: url('https://picsum.photos/600/400?random=36');"></div>
+              <h2>Agua Subterránea</h2>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="agua-superficial" name="source" value="Agua Superficial" required>
+            <label for="agua-superficial">
+              <div class="option-image" style="background-image: url('https://picsum.photos/600/400?random=37');"></div>
+              <h2>Agua Superficial</h2>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="agua-marina" name="source" value="Agua Marina" required>
+            <label for="agua-marina">
+              <div class="option-image" style="background-image: url('https://picsum.photos/600/400?random=38');"></div>
+              <h2>Agua Marina</h2>
+            </label>
+          </div>
+          <div class="option-item">
+            <input type="radio" id="red-publica" name="source" value="Red Pública de Abastecimiento" required>
+            <label for="red-publica">
+              <div class="option-image" style="background-image: url('https://picsum.photos/600/400?random=39');"></div>
+              <h2>Red Pública</h2>
+            </label>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Beneficios clave -->
-  <section class="benefits-section">
-    <div class="benefits-container">
-      <h2>¿Por qué elegir nuestras soluciones?</h2>
-      <div class="benefits-grid">
-        <div class="benefit-item">
-          <i class="fas fa-tint"></i>
-          <h3>Calidad Garantizada</h3>
-          <p>Agua potable que cumple con los estándares internacionales más estrictos.</p>
+        <div class="button-container">
+          <a href="tratamiento.html" class="back-btn">Atrás</a>
+          <button type="submit" class="configurator-btn">Continuar</button>
         </div>
-        <div class="benefit-item">
-          <i class="fas fa-leaf"></i>
-          <h3>Sostenibilidad</h3>
-          <p>Procesos diseñados para minimizar el impacto ambiental y optimizar recursos.</p>
-        </div>
-        <div class="benefit-item">
-          <i class="fas fa-cogs"></i>
-          <h3>Eficiencia Operativa</h3>
-          <p>Tecnología avanzada para un tratamiento rápido y fiable.</p>
-        </div>
-        <div class="benefit-item">
-          <i class="fas fa-headset"></i>
-          <h3>Soporte Técnico</h3>
-          <p>Asistencia continua para garantizar el mejor rendimiento.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Video de YouTube -->
-  <section class="video-section">
-    <div class="video-container">
-      <h2>Conoce más sobre el Tratamiento de Agua Potable</h2>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/HOtOtYdYsoM" title="Tratamiento de agua potable" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </form>
     </div>
   </section>
 
@@ -174,5 +184,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/script.js" defer></script>
+  <script src="../js/configurator.js" defer></script>
 </body>
 </html>
