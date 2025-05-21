@@ -146,7 +146,7 @@ function updatePlayIcon() {
 
 // Cargar componentes dinámicamente
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('components/footer-component.html') // Ruta absoluta desde la raíz
+  fetch('/components/footer-component.html') // Ruta absoluta desde la raíz
     .then(response => {
       if (!response.ok) throw new Error('Error cargando footer');
       return response.text();
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(err => console.error('Error cargando footer:', err));
 
-  fetch('components/contact-buttons.html') // Ruta absoluta desde la raíz
+  fetch('/components/contact-buttons.html') // Ruta absoluta desde la raíz
     .then(response => {
       if (!response.ok) throw new Error('Error cargando botones de contacto');
       return response.text();
