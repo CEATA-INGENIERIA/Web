@@ -144,32 +144,25 @@ function updatePlayIcon() {
 }
 
 
+// Cargar componentes dinámicamente
 document.addEventListener('DOMContentLoaded', () => {
-  // Detecta si estás en una subcarpeta (como /pages/)
-  const isInPagesFolder = location.pathname.includes('/pages/');
-  const basePath = isInPagesFolder ? '../components/' : './components/';
-
-  // Cargar Footer
-  fetch(basePath + 'footer-component.html')
+  fetch('/components/footer-component.html') // Ruta absoluta desde la raíz
     .then(response => {
       if (!response.ok) throw new Error('Error cargando footer');
       return response.text();
     })
     .then(data => {
-      const footer = document.getElementById('footer');
-      if (footer) footer.innerHTML = data;
+      document.getElementById('footer').innerHTML = data;
     })
     .catch(err => console.error('Error cargando footer:', err));
 
-  // Cargar botones de contacto
-  fetch(basePath + 'contact-buttons.html')
+  fetch('/components/contact-buttons.html') // Ruta absoluta desde la raíz
     .then(response => {
       if (!response.ok) throw new Error('Error cargando botones de contacto');
       return response.text();
     })
     .then(data => {
-      const contacto = document.getElementById('contacto');
-      if (contacto) contacto.innerHTML = data;
+      document.getElementById('contacto').innerHTML = data;
     })
     .catch(err => console.error('Error cargando botones de contacto:', err));
 });
