@@ -45,3 +45,25 @@ function toggleMenu() {
   navLinks.classList.toggle('show');
   menuToggle.classList.toggle('open');
 }
+
+let slideIndex = 0;
+    const slides = document.querySelector('.carousel-slides');
+    const totalSlides = document.querySelectorAll('.carousel-slide').length;
+
+    function showSlide(index) {
+      slides.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % totalSlides;
+      showSlide(slideIndex);
+    }
+
+    function prevSlide() {
+      slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+      showSlide(slideIndex);
+    }
+
+    // Iniciar con el primer slide
+    showSlide(slideIndex);
+
