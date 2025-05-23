@@ -1,6 +1,6 @@
 // Cargar Footer y botones de contacto (rutas relativas desde /pages/)
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('../components/footer-component.html')
+  fetch('../components/footer-commons.html')
     .then(response => {
       if (!response.ok) throw new Error('Error cargando footer');
       return response.text();
@@ -45,7 +45,6 @@ function toggleMenu() {
   navLinks.classList.toggle('show');
   menuToggle.classList.toggle('open');
 }
-
 let slideIndex = 0;
     const slides = document.querySelector('.carousel-slides');
     const totalSlides = document.querySelectorAll('.carousel-slide').length;
@@ -66,4 +65,3 @@ let slideIndex = 0;
 
     // Iniciar con el primer slide
     showSlide(slideIndex);
-

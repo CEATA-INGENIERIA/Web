@@ -315,10 +315,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
-  // Función para el menú móvil
+    // Función para el menú móvil
   function toggleMenu() {
     const navLinks = document.querySelector('.nav-links');
     navLinks.classList.toggle('active');
   }
 });
+
