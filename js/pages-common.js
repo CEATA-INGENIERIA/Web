@@ -45,6 +45,7 @@ function toggleMenu() {
   navLinks.classList.toggle('show');
   menuToggle.classList.toggle('open');
 }
+
 let slideIndex = 0;
     const slides = document.querySelector('.carousel-slides');
     const totalSlides = document.querySelectorAll('.carousel-slide').length;
