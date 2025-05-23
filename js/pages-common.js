@@ -1,6 +1,6 @@
 // Cargar Footer y botones de contacto (rutas relativas desde /pages/)
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('../components/footer-component.html')
+  fetch('../components/footer-commons.html')
     .then(response => {
       if (!response.ok) throw new Error('Error cargando footer');
       return response.text();
