@@ -1,5 +1,4 @@
-/** Barra de progreso */
-   document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Determinar el paso actual según la página
   const currentPage = window.location.pathname.split('/').pop();
   let currentStep;
@@ -37,8 +36,6 @@
       step.classList.add('active');
     }
   });
-
-
 
   // Manejo de tratamiento.html
   const treatmentForm = document.getElementById('treatment-form');
@@ -123,15 +120,22 @@
   if (additionalForm) {
     additionalForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const postTratamiento = document.getElementById('post-tratamiento').value;
-      const smartOperation = document.getElementById('smart-operation').value;
-      const peripheral = document.getElementById('peripheral').value;
+      const condicionesAgua = document.getElementById('condiciones-agua').value;
+      const espacioDisponible = document.getElementById('espacio-disponible').value;
+      const conexionesServicios = document.getElementById('conexiones-servicios').value;
+      const mantenimientoPostventa = document.getElementById('mantenimiento-postventa').value;
+
+      if (!condicionesAgua || !espacioDisponible || !conexionesServicios || !mantenimientoPostventa) {
+        alert('Por favor, selecciona una opción en todos los campos antes de continuar.');
+        return;
+      }
 
       const configData = JSON.parse(localStorage.getItem('configData')) || {};
       configData.adicionales = {
-        postTratamiento: postTratamiento || 'Ninguno',
-        smartOperation: smartOperation || 'Ninguno',
-        peripheral: peripheral || 'Ninguno'
+        condicionesAgua,
+        espacioDisponible,
+        conexionesServicios,
+        mantenimientoPostventa
       };
       localStorage.setItem('configData', JSON.stringify(configData));
       window.location.href = 'resumen.html';
@@ -145,27 +149,43 @@
 
   if (summaryList) {
     const configData = JSON.parse(localStorage.getItem('configData')) || {};
-
-    // Mostrar las selecciones en la lista
+    const sourceMap = {
+      'Agua Subterránea': 'Agua Subterránea',
+      'Agua Superficial': 'Agua Superficial',
+      'Agua Marina': 'Agua Marina',
+      'Red Pública de Abastecimiento': 'Red Pública de Abastecimiento'
+    };
     summaryList.innerHTML = `
-      <li><strong>Tipo de Tratamiento:</strong> ${configData.tipoTratamiento || 'No seleccionado'}</li>
-      <li><strong>Fuente de Agua:</strong> ${configData.fuenteAgua || 'No seleccionado'}</li>
-      <li><strong>Capacidad de Producción:</strong> ${configData.capacidadProduccion || 'No seleccionado'}</li>
-      <li><strong>Caracterización del Agua:</strong>
+      <div class="summary-section">
+        <h3>Tipo de Tratamiento</h3>
+        <p>${configData.tipoTratamiento || 'No seleccionado'}</p>
+      </div>
+      <div class="summary-section">
+        <h3>Fuente de Agua</h3>
+        <p>${sourceMap[configData.fuenteAgua] || 'No seleccionado'}</p>
+      </div>
+      <div class="summary-section">
+        <h3>Capacidad de Producción</h3>
+        <p>${configData.capacidadProduccion || 'No seleccionado'}</p>
+      </div>
+      <div class="summary-section">
+        <h3>Caracterización del Agua</h3>
         <ul>
-          <li>Temperatura: ${configData.caracterizacion?.temperatura || 'No seleccionado'}</li>
-          <li>Turbidez: ${configData.caracterizacion?.turbidez || 'No seleccionado'}</li>
-          <li>Contaminantes: ${configData.caracterizacion?.contaminantes || 'No seleccionado'}</li>
-          <li>Sólidos Disueltos: ${configData.caracterizacion?.solidosDisueltos || 'No seleccionado'}</li>
+          <li><strong>Temperatura:</strong> ${configData.caracterizacion?.temperatura || 'No seleccionado'}</li>
+          <li><strong>Turbidez:</strong> ${configData.caracterizacion?.turbidez || 'No seleccionado'}</li>
+          <li><strong>Contaminantes:</strong> ${configData.caracterizacion?.contaminantes || 'No seleccionado'}</li>
+          <li><strong>Sólidos Disueltos:</strong> ${configData.caracterizacion?.solidosDisueltos || 'No seleccionado'}</li>
         </ul>
-      </li>
-      <li><strong>Opciones Adicionales:</strong>
+      </div>
+      <div class="summary-section">
+        <h3>Detalles Adicionales</h3>
         <ul>
-          <li>Post Tratamiento: ${configData.adicionales?.postTratamiento || 'No seleccionado'}</li>
-          <li>Smart Operation: ${configData.adicionales?.smartOperation || 'No seleccionado'}</li>
-          <li>Peripheral: ${configData.adicionales?.peripheral || 'No seleccionado'}</li>
+          <li><strong>Condiciones del Agua de Fuente:</strong> ${configData.adicionales?.condicionesAgua || 'No especificado'}</li>
+          <li><strong>Espacio Disponible para la Instalación:</strong> ${configData.adicionales?.espacioDisponible || 'No especificado'}</li>
+          <li><strong>Conexiones y Servicios Disponibles:</strong> ${configData.adicionales?.conexionesServicios || 'No especificado'}</li>
+          <li><strong>Mantenimiento y Servicio Postventa:</strong> ${configData.adicionales?.mantenimientoPostventa || 'No especificado'}</li>
         </ul>
-      </li>
+      </div>
     `;
   }
 
@@ -188,7 +208,7 @@
 
       // Encabezado con logo y título
       if (logoData) {
-        doc.addImage(logoData, 'PNG', 10, 10, 40, 20); // Mantengo las dimensiones ajustadas
+        doc.addImage(logoData, 'PNG', 10, 10, 40, 20);
       }
       doc.setFont('Helvetica', 'bold');
       doc.setFontSize(18);
@@ -210,55 +230,60 @@
       doc.setFontSize(12);
       doc.setTextColor(0, 0, 0);
 
+      doc.setFont('Helvetica', 'bold');
       doc.text('Detalles de la Configuración:', 10, y);
-      y += 15; // Aumenté el espaciado a 15 para evitar solapamiento
+      y += 10;
+
       doc.setFont('Helvetica', 'bold');
       doc.text('Tipo de Tratamiento:', 10, y);
       doc.setFont('Helvetica', 'normal');
       doc.text(configData.tipoTratamiento || 'No seleccionado', 55, y);
-      y += 15;
+      y += 10;
 
       doc.setFont('Helvetica', 'bold');
       doc.text('Fuente de Agua:', 10, y);
       doc.setFont('Helvetica', 'normal');
       doc.text(configData.fuenteAgua || 'No seleccionado', 45, y);
-      y += 15;
+      y += 10;
 
       doc.setFont('Helvetica', 'bold');
       doc.text('Capacidad de Producción:', 10, y);
       doc.setFont('Helvetica', 'normal');
       doc.text(configData.capacidadProduccion || 'No seleccionado', 65, y);
-      y += 15;
+      y += 10;
 
       doc.setFont('Helvetica', 'bold');
       doc.text('Caracterización del Agua:', 10, y);
-      y += 15;
+      y += 8;
       doc.setFont('Helvetica', 'normal');
       doc.text(`- Temperatura: ${configData.caracterizacion?.temperatura || 'No seleccionado'}`, 15, y);
-      y += 10;
+      y += 8;
       doc.text(`- Turbidez: ${configData.caracterizacion?.turbidez || 'No seleccionado'}`, 15, y);
-      y += 10;
+      y += 8;
       doc.text(`- Contaminantes: ${configData.caracterizacion?.contaminantes || 'No seleccionado'}`, 15, y);
-      y += 10;
+      y += 8;
       doc.text(`- Sólidos Disueltos: ${configData.caracterizacion?.solidosDisueltos || 'No seleccionado'}`, 15, y);
-      y += 15;
+      y += 10;
 
       doc.setFont('Helvetica', 'bold');
-      doc.text('Opciones Adicionales:', 10, y);
-      y += 15;
+      doc.text('Detalles Adicionales:', 10, y);
+      y += 8;
       doc.setFont('Helvetica', 'normal');
-      doc.text(`- Post Tratamiento: ${configData.adicionales?.postTratamiento || 'No seleccionado'}`, 15, y);
+      doc.text(`- Condiciones del Agua de Fuente: ${configData.adicionales?.condicionesAgua || 'No especificado'}`, 15, y);
+      y += 8;
+      doc.text(`- Espacio Disponible: ${configData.adicionales?.espacioDisponible || 'No especificado'}`, 15, y);
+      y += 8;
+      doc.text(`- Conexiones y Servicios: ${configData.adicionales?.conexionesServicios || 'No especificado'}`, 15, y);
+      y += 8;
+      doc.text(`- Mantenimiento Postventa: ${configData.adicionales?.mantenimientoPostventa || 'No especificado'}`, 15, y);
       y += 10;
-      doc.text(`- Smart Operation: ${configData.adicionales?.smartOperation || 'No seleccionado'}`, 15, y);
-      y += 10;
-      doc.text(`- Peripheral: ${configData.adicionales?.peripheral || 'No seleccionado'}`, 15, y);
-      y += 15;
 
       doc.setFont('Helvetica', 'bold');
       doc.text('Fecha:', 10, y);
       doc.setFont('Helvetica', 'normal');
-      doc.text(new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }), 25, y); // Solo día/mes/año
-      y += 20;
+      const date = new Date();
+      doc.text(date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Madrid' }), 25, y);
+      y += 15;
 
       // Información de contacto
       doc.setFont('Helvetica', 'bold');
@@ -284,12 +309,16 @@
       // Guardar el PDF y mostrar modal de éxito
       doc.save('resumen_configuracion.pdf');
 
-      // Mostrar modal de éxito
       const successModal = new bootstrap.Modal(document.getElementById('successModal'));
       if (successModal) {
         successModal.show();
       }
     });
   }
+
+  // Función para el menú móvil
+  function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+  }
 });
-  
