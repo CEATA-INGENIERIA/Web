@@ -134,60 +134,60 @@
   </div>
 
   <!-- Sección de opciones adicionales -->
-  <section class="configurator-options">
-    <div class="options-container">
-      <h1>Opciones Adicionales</h1>
-      <p>Selecciona las opciones adicionales para tu solución:</p>
-      <form id="additional-form">
-        <div class="options-grid additional-grid">
-          <div class="option-item">
-            <label for="condiciones-agua">Condiciones del Agua de Fuente:</label>
-            <select id="condiciones-agua" name="condiciones-agua" required>
-              <option value="">Selecciona una opción</option>
-              <option value="Origen natural (río/lago)">Origen natural (río/lago)</option>
-              <option value="Origen subterráneo (pozo)">Origen subterráneo (pozo)</option>
-              <option value="Agua salada (marina)">Agua salada (marina)</option>
-              <option value="Agua tratada previamente">Agua tratada previamente</option>
-            </select>
-          </div>
-          <div class="option-item">
-            <label for="espacio-disponible">Espacio Disponible para la Instalación:</label>
-            <select id="espacio-disponible" name="espacio-disponible" required>
-              <option value="">Selecciona una opción</option>
-              <option value="Terreno plano (>500 m²)">Terreno plano (>500 m²)</option>
-              <option value="Terreno irregular (200-500 m²)">Terreno irregular (200-500 m²)</option>
-              <option value="Espacio reducido (<200 m²)">Espacio reducido (<200 m²)</option>
-              <option value="Interior (edificio)">Interior (edificio)</option>
-            </select>
-          </div>
-          <div class="option-item">
-            <label for="conexiones-servicios">Conexiones y Servicios Disponibles:</label>
-            <select id="conexiones-servicios" name="conexiones-servicios" required>
-              <option value="">Selecciona una opción</option>
-              <option value="Red de distribución existente">Red de distribución existente</option>
-              <option value="Servicios sanitarios disponibles">Servicios sanitarios disponibles</option>
-              <option value="Sin conexiones (instalación aislada)">Sin conexiones (instalación aislada)</option>
-              <option value="Conexión parcial (electricidad)">Conexión parcial (electricidad)</option>
-            </select>
-          </div>
-          <div class="option-item">
-            <label for="mantenimiento-postventa">Mantenimiento y Servicio Postventa:</label>
-            <select id="mantenimiento-postventa" name="mantenimiento-postventa" required>
-              <option value="">Selecciona una opción</option>
-              <option value="Mantenimiento anual con garantía">Mantenimiento anual con garantía</option>
-              <option value="Soporte técnico 24/7">Soporte técnico 24/7</option>
-              <option value="Mantenimiento bianual básico">Mantenimiento bianual básico</option>
-              <option value="Sin servicio postventa">Sin servicio postventa</option>
-            </select>
-          </div>
+<section class="configurator-options">
+  <div class="options-container">
+    <h1>Opciones Adicionales</h1>
+    <p>Selecciona las opciones adicionales para tu solución (opcional):</p>
+    <form id="additional-form">
+      <div class="options-grid additional-grid">
+        <div class="option-item">
+          <label for="condiciones-agua">Condiciones del Agua de Fuente:</label>
+          <select id="condiciones-agua" name="condiciones-agua">
+            <option value="">Selecciona una opción</option>
+            <option value="Origen natural (río/lago)">Origen natural (río/lago)</option>
+            <option value="Origen subterráneo (pozo)">Origen subterráneo (pozo)</option>
+            <option value="Agua salada (marina)">Agua salada (marina)</option>
+            <option value="Agua tratada previamente">Agua tratada previamente</option>
+          </select>
         </div>
-        <div class="button-container">
-          <a href="caracterizacion-agua.html" class="back-btn">Atrás</a>
-          <button type="submit" class="configurator-btn">Continuar</button>
+        <div class="option-item">
+          <label for="espacio-disponible">Espacio Disponible para la Instalación:</label>
+          <select id="espacio-disponible" name="espacio-disponible">
+            <option value="">Selecciona una opción</option>
+            <option value="Terreno plano (>500 m²)">Terreno plano (>500 m²)</option>
+            <option value="Terreno irregular (200-500 m²)">Terreno irregular (200-500 m²)</option>
+            <option value="Espacio reducido (<200 m²)">Espacio reducido (<200 m²)</option>
+            <option value="Interior (edificio)">Interior (edificio)</option>
+          </select>
         </div>
-      </form>
-    </div>
-  </section>
+        <div class="option-item">
+          <label for="conexiones-servicios">Conexiones y Servicios Disponibles:</label>
+          <select id="conexiones-servicios" name="conexiones-servicios">
+            <option value="">Selecciona una opción</option>
+            <option value="Red de distribución existente">Red de distribución existente</option>
+            <option value="Servicios sanitarios disponibles">Servicios sanitarios disponibles</option>
+            <option value="Sin conexiones (instalación aislada)">Sin conexiones (instalación aislada)</option>
+            <option value="Conexión parcial (electricidad)">Conexión parcial (electricidad)</option>
+          </select>
+        </div>
+        <div class="option-item">
+          <label for="mantenimiento-postventa">Mantenimiento y Servicio Postventa:</label>
+          <select id="mantenimiento-postventa" name="mantenimiento-postventa">
+            <option value="">Selecciona una opción</option>
+            <option value="Mantenimiento anual con garantía">Mantenimiento anual con garantía</option>
+            <option value="Soporte técnico 24/7">Soporte técnico 24/7</option>
+            <option value="Mantenimiento bianual básico">Mantenimiento bianual básico</option>
+            <option value="Sin servicio postventa">Sin servicio postventa</option>
+          </select>
+        </div>
+      </div>
+      <div class="button-container">
+        <a href="caracterizacion-agua.html" class="back-btn">Atrás</a>
+        <button type="submit" class="configurator-btn">Continuar</button>
+      </div>
+    </form>
+  </div>
+</section>
 
   <!-- Footer -->
   <div id="footer"></div>
