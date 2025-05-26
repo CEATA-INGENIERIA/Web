@@ -93,22 +93,26 @@ document.addEventListener('DOMContentLoaded', () => {
   if (characterizationForm) {
     characterizationForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const temperatura = document.getElementById('temperatura').value;
       const turbidez = document.getElementById('turbidez').value;
-      const contaminantes = document.getElementById('contaminantes').value;
-      const solidosDisueltos = document.getElementById('solidos-disueltos').value;
+      const conductividad = document.getElementById('conductividad').value;
+      const ph = document.getElementById('ph').value;
+      const materiaOrganica = document.getElementById('materia-organica').value;
+      const dureza = document.getElementById('dureza').value;
+      const coliformesTotales = document.getElementById('coliformes-totales').value;
 
-      if (!temperatura || !turbidez || !contaminantes || !solidosDisueltos) {
+      if (!turbidez || !conductividad || !ph || !materiaOrganica || !dureza || !coliformesTotales) {
         alert('Por favor, selecciona una opción para cada característica antes de continuar.');
         return;
       }
 
       const configData = JSON.parse(localStorage.getItem('configData')) || {};
       configData.caracterizacion = {
-        temperatura,
         turbidez,
-        contaminantes,
-        solidosDisueltos
+        conductividad,
+        ph,
+        materiaOrganica,
+        dureza,
+        coliformesTotales
       };
       localStorage.setItem('configData', JSON.stringify(configData));
       window.location.href = 'adicionales.html';
@@ -118,76 +122,110 @@ document.addEventListener('DOMContentLoaded', () => {
   // Manejo de adicionales.html
   const additionalForm = document.getElementById('additional-form');
   if (additionalForm) {
-    additionalForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const condicionesAgua = document.getElementById('condiciones-agua').value;
-      const espacioDisponible = document.getElementById('espacio-disponible').value;
-      const conexionesServicios = document.getElementById('conexiones-servicios').value;
-      const mantenimientoPostventa = document.getElementById('mantenimiento-postventa').value;
+  additionalForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const condicionesAgua = document.getElementById('condiciones-agua').value;
+    const espacioDisponible = document.getElementById('espacio-disponible').value;
+    const conexionesServicios = document.getElementById('conexiones-servicios').value;
+    const mantenimientoPostventa = document.getElementById('mantenimiento-postventa').value;
 
-      if (!condicionesAgua || !espacioDisponible || !conexionesServicios || !mantenimientoPostventa) {
-        alert('Por favor, selecciona una opción en todos los campos antes de continuar.');
-        return;
-      }
-
-      const configData = JSON.parse(localStorage.getItem('configData')) || {};
-      configData.adicionales = {
-        condicionesAgua,
-        espacioDisponible,
-        conexionesServicios,
-        mantenimientoPostventa
-      };
-      localStorage.setItem('configData', JSON.stringify(configData));
-      window.location.href = 'resumen.html';
-    });
+    // No se requiere validación, ya que los campos son opcionales
+    const configData = JSON.parse(localStorage.getItem('configData')) || {};
+    configData.adicionales = {
+      condicionesAgua: condicionesAgua || 'No especificado',
+      espacioDisponible: espacioDisponible || 'No especificado',
+      conexionesServicios: conexionesServicios || 'No especificado',
+      mantenimientoPostventa: mantenimientoPostventa || 'No especificado'
+    };
+    localStorage.setItem('configData', JSON.stringify(configData));
+    window.location.href = 'resumen.html';
+  });
   }
 
   // Manejo de resumen.html
-  const summaryList = document.getElementById('summary-list');
-  const finalizeBtn = document.getElementById('finalize-btn');
-  const downloadBtn = document.getElementById('download-btn');
+ // Manejo de resumen.html
+const summaryList = document.getElementById('summary-list');
+const solutionImagePrice = document.getElementById('solution-image-price');
+const finalizeBtn = document.getElementById('finalize-btn');
+const downloadBtn = document.getElementById('download-btn');
 
-  if (summaryList) {
-    const configData = JSON.parse(localStorage.getItem('configData')) || {};
-    const sourceMap = {
-      'Agua Subterránea': 'Agua Subterránea',
-      'Agua Superficial': 'Agua Superficial',
-      'Agua Marina': 'Agua Marina',
-      'Red Pública de Abastecimiento': 'Red Pública de Abastecimiento'
-    };
-    summaryList.innerHTML = `
-      <div class="summary-section">
-        <h3>Tipo de Tratamiento</h3>
-        <p>${configData.tipoTratamiento || 'No seleccionado'}</p>
-      </div>
-      <div class="summary-section">
-        <h3>Fuente de Agua</h3>
-        <p>${sourceMap[configData.fuenteAgua] || 'No seleccionado'}</p>
-      </div>
-      <div class="summary-section">
-        <h3>Capacidad de Producción</h3>
-        <p>${configData.capacidadProduccion || 'No seleccionado'}</p>
-      </div>
-      <div class="summary-section">
-        <h3>Caracterización del Agua</h3>
-        <ul>
-          <li><strong>Temperatura:</strong> ${configData.caracterizacion?.temperatura || 'No seleccionado'}</li>
-          <li><strong>Turbidez:</strong> ${configData.caracterizacion?.turbidez || 'No seleccionado'}</li>
-          <li><strong>Contaminantes:</strong> ${configData.caracterizacion?.contaminantes || 'No seleccionado'}</li>
-          <li><strong>Sólidos Disueltos:</strong> ${configData.caracterizacion?.solidosDisueltos || 'No seleccionado'}</li>
-        </ul>
-      </div>
-      <div class="summary-section">
-        <h3>Detalles Adicionales</h3>
-        <ul>
-          <li><strong>Condiciones del Agua de Fuente:</strong> ${configData.adicionales?.condicionesAgua || 'No especificado'}</li>
-          <li><strong>Espacio Disponible para la Instalación:</strong> ${configData.adicionales?.espacioDisponible || 'No especificado'}</li>
-          <li><strong>Conexiones y Servicios Disponibles:</strong> ${configData.adicionales?.conexionesServicios || 'No especificado'}</li>
-          <li><strong>Mantenimiento y Servicio Postventa:</strong> ${configData.adicionales?.mantenimientoPostventa || 'No especificado'}</li>
-        </ul>
-      </div>
-    `;
-  }
+if (summaryList) {
+  const configData = JSON.parse(localStorage.getItem('configData')) || {};
+  const sourceMap = {
+    'Agua Subterránea': 'Agua Subterránea',
+    'Agua Superficial': 'Agua Superficial',
+    'Agua Marina': 'Agua Marina',
+    'Red Pública de Abastecimiento': 'Red Pública de Abastecimiento'
+  };
+
+  // Mostrar el resumen
+  summaryList.innerHTML = `
+    <div class="summary-section">
+      <h3>Tipo de Tratamiento</h3>
+      <p>${configData.tipoTratamiento || 'No seleccionado'}</p>
+    </div>
+    <div class="summary-section">
+      <h3>Fuente de Agua</h3>
+      <p>${sourceMap[configData.fuenteAgua] || 'No seleccionado'}</p>
+    </div>
+    <div class="summary-section">
+      <h3>Capacidad de Producción</h3>
+      <p>${configData.capacidadProduccion || 'No seleccionado'}</p>
+    </div>
+    <div class="summary-section">
+      <h3>Caracterización del Agua</h3>
+      <ul>
+        <li><strong>Turbidez:</strong> ${configData.caracterizacion?.turbidez || 'No seleccionado'}</li>
+        <li><strong>Conductividad:</strong> ${configData.caracterizacion?.conductividad || 'No seleccionado'}</li>
+        <li><strong>pH:</strong> ${configData.caracterizacion?.ph || 'No seleccionado'}</li>
+        <li><strong>Materia Orgánica:</strong> ${configData.caracterizacion?.materiaOrganica || 'No seleccionado'}</li>
+        <li><strong>Dureza:</strong> ${configData.caracterizacion?.dureza || 'No seleccionado'}</li>
+        <li><strong>Coliformes Totales:</strong> ${configData.caracterizacion?.coliformesTotales || 'No seleccionado'}</li>
+      </ul>
+    </div>
+    <div class="summary-section">
+      <h3>Detalles Adicionales</h3>
+      <ul>
+        <li><strong>Condiciones del Agua de Fuente:</strong> ${configData.adicionales?.condicionesAgua || 'No especificado'}</li>
+        <li><strong>Espacio Disponible para la Instalación:</strong> ${configData.adicionales?.espacioDisponible || 'No especificado'}</li>
+        <li><strong>Conexiones y Servicios Disponibles:</strong> ${configData.adicionales?.conexionesServicios || 'No especificado'}</li>
+        <li><strong>Mantenimiento y Servicio Postventa:</strong> ${configData.adicionales?.mantenimientoPostventa || 'No especificado'}</li>
+      </ul>
+    </div>
+  `;
+
+  // Mapa de capacidades con imágenes y precios
+  const capacityDetails = {
+    'Pequeña Escala (hasta 10 m³/día)': {
+      image: 'https://picsum.photos/600/400?random=42',
+      price: 'Desde: 60.000€'
+    },
+    'Mediana Escala (10-100 m³/día)': {
+      image: 'https://picsum.photos/600/400?random=43',
+      price: 'Desde: 120.000€'
+    },
+    'Grande Escala (100-1000 m³/día)': {
+      image: 'https://picsum.photos/600/400?random=44',
+      price: 'Desde: 250.000€'
+    },
+    'Industrial (más de 1000 m³/día)': {
+      image: 'https://picsum.photos/600/400?random=45',
+      price: 'Desde: 500.000€'
+    }
+  };
+
+  // Mostrar imagen y precio según la capacidad seleccionada
+  const selectedCapacity = configData.capacidadProduccion || 'No seleccionado';
+  const capacityInfo = capacityDetails[selectedCapacity] || {
+    image: 'https://picsum.photos/600/400?random=46', // Imagen por defecto si no hay selección
+    price: 'Precio no disponible'
+  };
+
+  solutionImagePrice.innerHTML = `
+    <img src="${capacityInfo.image}" alt="Solución para ${selectedCapacity}">
+    <p>${capacityInfo.price}</p>
+  `;
+}
 
   if (finalizeBtn) {
     finalizeBtn.addEventListener('click', () => {
@@ -256,13 +294,17 @@ document.addEventListener('DOMContentLoaded', () => {
       doc.text('Caracterización del Agua:', 10, y);
       y += 8;
       doc.setFont('Helvetica', 'normal');
-      doc.text(`- Temperatura: ${configData.caracterizacion?.temperatura || 'No seleccionado'}`, 15, y);
-      y += 8;
       doc.text(`- Turbidez: ${configData.caracterizacion?.turbidez || 'No seleccionado'}`, 15, y);
       y += 8;
-      doc.text(`- Contaminantes: ${configData.caracterizacion?.contaminantes || 'No seleccionado'}`, 15, y);
+      doc.text(`- Conductividad: ${configData.caracterizacion?.conductividad || 'No seleccionado'}`, 15, y);
       y += 8;
-      doc.text(`- Sólidos Disueltos: ${configData.caracterizacion?.solidosDisueltos || 'No seleccionado'}`, 15, y);
+      doc.text(`- pH: ${configData.caracterizacion?.ph || 'No seleccionado'}`, 15, y);
+      y += 8;
+      doc.text(`- Materia Orgánica: ${configData.caracterizacion?.materiaOrganica || 'No seleccionado'}`, 15, y);
+      y += 8;
+      doc.text(`- Dureza: ${configData.caracterizacion?.dureza || 'No seleccionado'}`, 15, y);
+      y += 8;
+      doc.text(`- Coliformes Totales: ${configData.caracterizacion?.coliformesTotales || 'No seleccionado'}`, 15, y);
       y += 10;
 
       doc.setFont('Helvetica', 'bold');
@@ -315,10 +357,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-    // Función para el menú móvil
+
+  // Función para el menú móvil
   function toggleMenu() {
     const navLinks = document.querySelector('.nav-links');
     navLinks.classList.toggle('active');
   }
 });
-
