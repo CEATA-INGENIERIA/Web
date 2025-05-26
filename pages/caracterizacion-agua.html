@@ -136,56 +136,74 @@
 
 
   <!-- Sección de caracterización del agua -->
-  <section class="configurator-options">
-    <div class="options-container">
-      <h1>Caracterización del Agua</h1>
-      <p>Selecciona las características del agua:</p>
-      <form id="characterization-form">
-        <div class="options-grid characterization-grid">
-          <div class="option-item">
-            <label for="temperatura">Temperatura:</label>
-            <select id="temperatura" name="temperatura" required>
-              <option value="">Selecciona una opción</option>
-              <option value="Baja">Baja</option>
-              <option value="Media">Media</option>
-              <option value="Alta">Alta</option>
-            </select>
-          </div>
-          <div class="option-item">
-            <label for="turbidez">Turbidez:</label>
-            <select id="turbidez" name="turbidez" required>
-              <option value="">Selecciona una opción</option>
-              <option value="Baja">Baja</option>
-              <option value="Media">Media</option>
-              <option value="Alta">Alta</option>
-            </select>
-          </div>
-          <div class="option-item">
-            <label for="contaminantes">Contaminantes:</label>
-            <select id="contaminantes" name="contaminantes" required>
-              <option value="">Selecciona una opción</option>
-              <option value="Bajo">Bajo</option>
-              <option value="Medio">Medio</option>
-              <option value="Alto">Alto</option>
-            </select>
-          </div>
-          <div class="option-item">
-            <label for="solidos-disueltos">Sólidos Disueltos:</label>
-            <select id="solidos-disueltos" name="solidos-disueltos" required>
-              <option value="">Selecciona una opción</option>
-              <option value="Bajo">Bajo</option>
-              <option value="Medio">Medio</option>
-              <option value="Alto">Alto</option>
-            </select>
-          </div>
+ <section class="configurator-options">
+  <div class="options-container">
+    <h1>Caracterización del Agua</h1>
+    <p>Selecciona las características del agua:</p>
+    <form id="characterization-form">
+      <div class="options-grid characterization-grid">
+        <div class="option-item">
+          <label for="turbidez">Turbidez:</label>
+          <select id="turbidez" name="turbidez" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Baja">&lt; 10 NTU</option>
+            <option value="Media">10-100 NTU</option>
+            <option value="Alta">&gt; 100 NTU</option>
+          </select>
         </div>
-        <div class="button-container">
-          <a href="capacidad-produccion.html" class="back-btn">Atrás</a>
-          <button type="submit" class="configurator-btn">Continuar</button>
+        <div class="option-item">
+          <label for="conductividad">Conductividad:</label>
+          <select id="conductividad" name="conductividad" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Baja">&lt; 200 µS/cm</option>
+            <option value="Media">200-500 µS/cm</option>
+            <option value="Alta">&gt; 500 µS/cm</option>
+          </select>
         </div>
-      </form>
-    </div>
-  </section>
+        <div class="option-item">
+          <label for="ph">pH:</label>
+          <select id="ph" name="ph" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Baja">&lt; 6.5</option>
+            <option value="Media">6.5-8.5</option>
+            <option value="Alta">&gt; 8.5</option>
+          </select>
+        </div>
+        <div class="option-item">
+          <label for="materia-organica">Materia Orgánica:</label>
+          <select id="materia-organica" name="materia-organica" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Baja">&lt; 2 mg/L</option>
+            <option value="Media">2-5 mg/L</option>
+            <option value="Alta">&gt; 5 mg/L</option>
+          </select>
+        </div>
+        <div class="option-item">
+          <label for="dureza">Dureza:</label>
+          <select id="dureza" name="dureza" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Baja">&lt; 50 mg/L</option>
+            <option value="Media">50-250 mg/L</option>
+            <option value="Alta">&gt; 250 mg/L</option>
+          </select>
+        </div>
+        <div class="option-item">
+          <label for="coliformes-totales">Coliformes Totales:</label>
+          <select id="coliformes-totales" name="coliformes-totales" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Baja">&lt; 1.000 NMP/100 mL</option>
+            <option value="Media">1.000-10.000 NMP/100 mL</option>
+            <option value="Alta">&gt; 10.000 NMP/100 mL</option>
+          </select>
+        </div>
+      </div>
+      <div class="button-container">
+        <a href="capacidad-produccion.html" class="back-btn">Atrás</a>
+        <button type="submit" class="configurator-btn">Continuar</button>
+      </div>
+    </form>
+  </div>
+</section>
 
   <!-- Footer -->
   <div id="footer"></div>
