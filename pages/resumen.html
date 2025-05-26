@@ -133,37 +133,40 @@
   </div>
 
   <!-- Sección de resumen -->
-  <section class="configurator-options">
-    <div class="options-container">
-      <h1>Resumen de tu Configuración</h1>
-      <p>Revisa las selecciones que has hecho:</p>
-      <div id="summary-list" class="summary-list">
-        <!-- Los elementos se llenarán dinámicamente con JavaScript -->
-      </div>
-      <div class="button-container">
-        <a href="adicionales.html" class="back-btn">Atrás</a>
-        <button id="download-btn" class="configurator-btn">Descargar</button>
-        <button id="finalize-btn" class="configurator-btn">Finalizar</button>
-      </div>
+<section class="configurator-options">
+  <div class="options-container">
+    <h1>Resumen de tu Configuración</h1>
+    <p>Revisa las selecciones que has hecho:</p>
+    <div id="summary-list" class="summary-list">
+      <!-- Los elementos se llenarán dinámicamente con JavaScript -->
     </div>
+    <div id="solution-image-price" class="solution-image-price">
+      <!-- La imagen y el precio se llenarán dinámicamente con JavaScript -->
+    </div>
+    <div class="button-container">
+      <a href="adicionales.html" class="back-btn">Atrás</a>
+      <button id="download-btn" class="configurator-btn">Descargar</button>
+      <button id="finalize-btn" class="configurator-btn">Finalizar</button>
+    </div>
+  </div>
 
-    <!-- Modal de éxito -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="successModalLabel">Descarga Exitosa</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            ¡PDF descargado con éxito! Tu resumen de configuración ha sido generado.
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
+  <!-- Modal de éxito -->
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="successModalLabel">Descarga Exitosa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¡PDF descargado con éxito! Tu resumen de configuración ha sido generado.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
+  </div>
   </section>
 
   <!-- Footer -->
