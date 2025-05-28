@@ -47,22 +47,62 @@ function toggleMenu() {
 }
 
 let slideIndex = 0;
-    const slides = document.querySelector('.carousel-slides');
-    const totalSlides = document.querySelectorAll('.carousel-slide').length;
+const slides = document.querySelectorAll('.carousel-slide');
+const slidesContainer = document.querySelector('.carousel-slides');
+const dotsContainer = document.querySelector('.carousel-dots');
+const totalSlides = slides.length;
 
-    function showSlide(index) {
-      slides.style.transform = `translateX(-${index * 100}%)`;
-    }
+// Generar los puntos (dots) dinámicamente
+for (let i = 0; i < totalSlides; i++) {
+  const dot = document.createElement('span');
+  dot.classList.add('dot');
+  if (i === 0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToSlide(i));
+  dotsContainer.appendChild(dot);
+}
 
-    function nextSlide() {
-      slideIndex = (slideIndex + 1) % totalSlides;
-      showSlide(slideIndex);
-    }
+function showSlide(index) {
+  slidesContainer.style.transform = `translateX(-${index * 100}%)`;
 
-    function prevSlide() {
-      slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
-      showSlide(slideIndex);
-    }
+  // Actualizar los puntos activos
+  document.querySelectorAll('.dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
 
-    // Iniciar con el primer slide
-    showSlide(slideIndex);
+  // Reiniciar animaciones de los elementos
+  const currentItems = slides[index].querySelectorAll('.benefit-item[data-animate]');
+  currentItems.forEach((item, i) => {
+    item.classList.remove('visible');
+    setTimeout(() => {
+      item.classList.add('visible');
+    }, i * 550); // Retraso progresivo para cada elemento
+  });
+}
+
+function nextSlide() {
+  slideIndex = (slideIndex + 1) % totalSlides;
+  showSlide(slideIndex);
+}
+
+function prevSlide() {
+  slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+  showSlide(slideIndex);
+}
+
+function goToSlide(index) {
+  slideIndex = index;
+  showSlide(slideIndex);
+}
+
+// Manejar el botón "Saber más"
+document.querySelectorAll('.read-more').forEach(button => {
+  button.addEventListener('click', function () {
+    const item = this.parentElement;
+    item.classList.toggle('expanded');
+    this.textContent = item.classList.contains('expanded') ? 'Ocultar' : 'Saber más';
+  });
+});
+
+// Mostrar el primer slide al cargar
+showSlide(slideIndex);
+
