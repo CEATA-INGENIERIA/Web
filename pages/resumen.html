@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Resumen de la configuración para soluciones de CEATA Ingeniería.">
-  <title>Resumen de Configuración - CEATA Ingeniería</title>
+  <meta name="description" content="Resumen y contacto para soluciones de CEATA Ingeniería.">
+  <title>Resumen y Contacto - CEATA Ingeniería</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="../css/style.css">
@@ -132,23 +132,78 @@
     </div>
   </div>
 
-  <!-- Sección de resumen -->
-<section class="configurator-options">
-  <div class="options-container">
-    <h1>Resumen de tu Configuración</h1>
-    <p>Revisa las selecciones que has hecho:</p>
-    <div id="summary-list" class="summary-list">
-      <!-- Los elementos se llenarán dinámicamente con JavaScript -->
+  <!-- Sección principal con formulario y resumen -->
+  <section class="configurator-options">
+    <div class="options-container">
+      <div class="content-grid">
+        <!-- Columna izquierda: Formulario de contacto -->
+        <div class="contact-section">
+          <h1><i class="fas fa-envelope me-2"></i> Envío de Configuración</h1>
+          <p class="lead">Completa el formulario para enviarnos tu configuración y recibir asesoramiento personalizado:</p>
+        <form id="contact-form" class="contact-form">
+        <div class="mb-4">
+          <input type="text" class="form-control shadow-sm" id="nombre" name="nombre" placeholder="Nombre*" required>
+        </div>
+        <div class="mb-4">
+          <input type="text" class="form-control shadow-sm" id="apellido" name="apellido" placeholder="Apellido*" required>
+        </div>
+        <div class="mb-4">
+          <input type="email" class="form-control shadow-sm" id="email" name="email" placeholder="Correo Electrónico*" required>
+        </div>
+      <div class="mb-4">
+        <input type="text" class="form-control shadow-sm" id="compania" name="compania" placeholder="Nombre de tu compañía (opcional)">
+      </div>
+      <div class="mb-4">
+        <input type="tel" class="form-control shadow-sm" id="telefono" name="telefono" placeholder="Escribe tu número de teléfono (opcional)">
+      </div>
+      <div class="mb-4">
+        <select class="form-select shadow-sm" id="pais" name="pais">
+        <option value="">Selecciona un país</option>
+        <option value="España">España</option>
+        <option value="Francia">Francia</option>
+        <option value="Italia">Italia</option>
+        <option value="Portugal">Portugal</option>
+        <option value="Otros">Otros</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <textarea class="form-control shadow-sm" id="comentarios" name="comentarios" rows="3" placeholder="Comentarios (opcional)"></textarea>
+      </div>
+      <!-- <div class="mb-4">
+        <label for="archivos" class="form-label">Subir Analíticas o Imágenes (PDFs e Imágenes, opcional)</label>
+        <input type="file" class="form-control shadow-sm" id="archivos" name="archivos" accept=".pdf,.jpg,.jpeg,.png" multiple>
+        <small class="text-muted">Sube los archivos de tus analíticas o imágenes relevantes si lo deseas.</small>
+        </div>-->
+      <div class="mb-4 form-check">
+        <input type="checkbox" class="form-check-input" id="terminos" name="terminos" required>
+      <label class="form-check-label" for="terminos">Al marcar esta casilla, acepta nuestros <a href="/pages/terminos-y-condiciones.html" class="text-primary" target="_blank">términos y condiciones</a>.</label>
+      </div>
+      <div class="mb-4 form-check">
+        <input type="checkbox" class="form-check-input" id="autorizacion" name="autorizacion" required>
+        <label class="form-check-label" for="autorizacion">Autorizo a CEATA Ingeniería a contactarme con información sobre sus productos, servicios y eventos. Entiendo que puedo cancelar mi suscripción o gestionar mis preferencias en cualquier momento.</label>
+      </div>
+  <!-- Campo oculto para configData -->
+  <input type="hidden" id="configData" name="configData">
+  <button type="submit" class="configurator-btn btn-custom">Enviar Configuración</button>
+</form>
+          </div>
+          <!-- Columna derecha: Resumen -->
+          <div class="summary-section">
+          <h1>Resumen de tu Configuración</h1>
+          <p>Revisa las selecciones que has hecho:</p>
+          <div id="summary-list" class="summary-list"></div>
+          <div id="solution-image-price" class="solution-image-price"></div>
+          <div class="button-container">
+            <button id="videoBtn" class="youtube-btn">Ver Video</button>
+          </div>
+          </div>
+          </div>
+          <div class="button-container">
+            <a href="adicionales.html" id="backBtn" class="back-btn">Atrás</a>
+            <button id="downloadBtn" class="configurator-btn">Descargar</button>
+          </div>
     </div>
-    <div id="solution-image-price" class="solution-image-price">
-      <!-- La imagen y el precio se llenarán dinámicamente con JavaScript -->
-    </div>
-    <div class="button-container">
-      <a href="adicionales.html" class="back-btn">Atrás</a>
-      <button id="download-btn" class="configurator-btn">Descargar</button>
-      <button id="send-btn" class="configurator-btn">Enviar</button>
-    </div>
-  </div>
+  </section>
 
   <!-- Modal de éxito -->
   <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
@@ -167,7 +222,6 @@
       </div>
     </div>
   </div>
-  </section>
 
   <!-- Footer -->
   <div id="footer"></div>
@@ -175,10 +229,11 @@
   <!-- Botones Flotantes de Contacto -->
   <div id="contacto"></div>
 
-  <!-- Librería jsPDF para generar PDF -->
+  <!-- Librerías y scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/pages-common.js" defer></script>
-  <script src="../js/configurator.js" defer></script>
+  <script src="../js/configurator.js" defer></script>7
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </body>
 </html>
