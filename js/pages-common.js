@@ -46,51 +46,58 @@ function toggleMenu() {
   menuToggle.classList.toggle('open');
 }
 
-let slideIndex = 0;
+// Carrusel (solo ejecutar si los elementos existen)
 const slides = document.querySelectorAll('.carousel-slide');
 const slidesContainer = document.querySelector('.carousel-slides');
 const dotsContainer = document.querySelector('.carousel-dots');
-const totalSlides = slides.length;
 
-// Generar los puntos (dots) dinámicamente
-for (let i = 0; i < totalSlides; i++) {
-  const dot = document.createElement('span');
-  dot.classList.add('dot');
-  if (i === 0) dot.classList.add('active');
-  dot.addEventListener('click', () => goToSlide(i));
-  dotsContainer.appendChild(dot);
-}
+if (slidesContainer && dotsContainer && slides.length > 0) {
+  let slideIndex = 0;
+  const totalSlides = slides.length;
 
-function showSlide(index) {
-  slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+  // Generar los puntos (dots) dinámicamente
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('span');
+    dot.classList.add('dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  }
 
-  // Actualizar los puntos activos
-  document.querySelectorAll('.dot').forEach((dot, i) => {
-    dot.classList.toggle('active', i === index);
-  });
+  function showSlide(index) {
+    slidesContainer.style.transform = `translateX(-${index * 100}%)`;
 
-  // Reiniciar animaciones de los elementos
-  const currentItems = slides[index].querySelectorAll('.benefit-item[data-animate]');
-  currentItems.forEach((item, i) => {
-    item.classList.remove('visible');
-    setTimeout(() => {
-      item.classList.add('visible');
-    }, i * 550); // Retraso progresivo para cada elemento
-  });
-}
+    // Actualizar los puntos activos
+    document.querySelectorAll('.dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
 
-function nextSlide() {
-  slideIndex = (slideIndex + 1) % totalSlides;
-  showSlide(slideIndex);
-}
+    // Reiniciar animaciones de los elementos
+    const currentItems = slides[index].querySelectorAll('.benefit-item[data-animate]');
+    currentItems.forEach((item, i) => {
+      item.classList.remove('visible');
+      setTimeout(() => {
+        item.classList.add('visible');
+      }, i * 550); // Retraso progresivo de 550ms como lo tenías
+    });
+  }
 
-function prevSlide() {
-  slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
-  showSlide(slideIndex);
-}
+  function nextSlide() {
+    slideIndex = (slideIndex + 1) % totalSlides;
+    showSlide(slideIndex);
+  }
 
-function goToSlide(index) {
-  slideIndex = index;
+  function prevSlide() {
+    slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+    showSlide(slideIndex);
+  }
+
+  function goToSlide(index) {
+    slideIndex = index;
+    showSlide(slideIndex);
+  }
+
+  // Mostrar el primer slide al cargar
   showSlide(slideIndex);
 }
 
@@ -102,7 +109,3 @@ document.querySelectorAll('.read-more').forEach(button => {
     this.textContent = item.classList.contains('expanded') ? 'Ocultar' : 'Saber más';
   });
 });
-
-// Mostrar el primer slide al cargar
-showSlide(slideIndex);
-
