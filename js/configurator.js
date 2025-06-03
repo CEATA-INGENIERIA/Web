@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Determinar el paso actual según la página
+  // Este bloque identifica la página actual para establecer el paso en la barra de progreso
   const currentPage = window.location.pathname.split('/').pop();
   let currentStep;
 
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Actualizar los pasos en la barra de progreso
+  // Añade clases 'completed' o 'active' a los pasos según el progreso del usuario
   const steps = document.querySelectorAll('.progress-bar .step');
   steps.forEach((step, index) => {
     const stepNumber = parseInt(step.getAttribute('data-step'));
@@ -38,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Manejo de tratamiento.html
+  // Gestiona el formulario de selección de tratamiento y guarda los datos en localStorage
   const treatmentForm = document.getElementById('treatment-form');
   if (treatmentForm) {
     treatmentForm.addEventListener('submit', (e) => {
@@ -55,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Manejo de fuente-agua.html
+  // Gestiona el formulario de selección de fuente de agua y actualiza localStorage
   const sourceForm = document.getElementById('source-form');
   if (sourceForm) {
     sourceForm.addEventListener('submit', (e) => {
@@ -72,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Manejo de capacidad-produccion.html
+  // Gestiona el formulario de selección de capacidad de producción y actualiza localStorage
   const capacityForm = document.getElementById('capacity-form');
   if (capacityForm) {
     capacityForm.addEventListener('submit', (e) => {
@@ -89,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Manejo de caracterizacion-agua.html
+  // Gestiona el formulario de caracterización del agua y guarda los datos en localStorage
   const characterizationForm = document.getElementById('characterization-form');
   if (characterizationForm) {
     characterizationForm.addEventListener('submit', (e) => {
@@ -120,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Manejo de adicionales.html
+  // Gestiona el formulario de detalles adicionales y guarda los datos en localStorage
   const additionalForm = document.getElementById('additional-form');
   if (additionalForm) {
     additionalForm.addEventListener('submit', (e) => {
@@ -142,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Manejo de resumen.html
+  // Genera el resumen de la configuración y muestra detalles de la solución
   const summaryList = document.getElementById('summary-list');
   const solutionImagePrice = document.getElementById('solution-image-price');
   const downloadBtn = document.getElementById('downloadBtn');
@@ -232,6 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (downloadBtn) {
     downloadBtn.addEventListener('click', () => {
+      // Genera un PDF con los datos de la configuración usando jsPDF
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
 
@@ -412,6 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (videoBtn) {
     videoBtn.addEventListener('click', () => {
+      // Abre un video de YouTube según la capacidad seleccionada
       const configData = JSON.parse(localStorage.getItem('configData')) || {};
       const selectedCapacity = configData.capacidadProduccion || 'No seleccionado';
       let youtubeUrl;
@@ -430,10 +440,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Inicializar EmailJS
+  // Configura EmailJS con la clave pública del usuario (clave sensible: '8qXMAu3wptY12D2F-')
+  // Nota: Esta clave debe mantenerse segura y no compartirse públicamente
   emailjs.init('8qXMAu3wptY12D2F-');
 
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
+      // Maneja el envío del formulario de contacto mediante EmailJS
       e.preventDefault();
       const nombre = document.getElementById('nombre').value;
       const apellido = document.getElementById('apellido').value;
@@ -459,6 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Preparar los datos para EmailJS
+      // Se incluye configData como string JSON para enviar toda la configuración
       const configData = JSON.parse(localStorage.getItem('configData')) || {};
       const emailParams = {
         nombre: nombre,
@@ -473,11 +487,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log('Enviando correo con los siguientes parámetros:', emailParams);
 
-      // Enviar correo al cliente
+      // Enviar correo al cliente usando la plantilla 'template_9upi8x7'
+      // Servicio: 'service_7gmve4s' (clave sensible: identifica el servicio EmailJS)
       emailjs.send('service_7gmve4s', 'template_9upi8x7', emailParams)
         .then(() => {
           console.log('Correo al cliente enviado con éxito');
-          // Enviar correo a la empresa
+          // Enviar correo a la empresa usando la plantilla 'template_9ib1w9e'
           return emailjs.send('service_7gmve4s', 'template_9ib1w9e', emailParams);
         })
         .then(() => {
@@ -494,6 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Función para el menú móvil
+  // Alterna la visibilidad del menú móvil al hacer clic
   function toggleMenu() {
     const navLinks = document.querySelector('.nav-links');
     navLinks.classList.toggle('active');
